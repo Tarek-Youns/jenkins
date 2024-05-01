@@ -1,35 +1,21 @@
 pipeline {
-            agent any
-            tools {
-                    go 'go-1.17'
-                }
-            environment {
-                        G0111MODULE='on'
-                    }
+    agent any
 
-            stages {
-
-                    stage('Test') {
-
-                                    steps {
-                                            git 'https://github.com/Admin Turned DevOps/go-webapp-sample.git'
-                                            sh 'go test./...'
-                                             }
-                     }   
-
-                    stage('Build and Run') {
-                                    steps {
-                                            git 'https://github.com/AdminTurned DevOps/go-webapp-sample.git'
-                                            sh 'go build.'
-                                           }
-                    }
-                    stage('Run') {
-                                    steps {
-                                           sh 'cd /var/lib/jenkins/workspace/go-full-pipeline && go-webapp-sample &'
-                                         }      
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
             }
-            
- 
-                    }                             
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
 }
-
