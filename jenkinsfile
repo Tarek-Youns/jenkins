@@ -1,7 +1,7 @@
 pipeline {
             agent any
             tools {
-                    go 'null'
+                    go 
                 }
             environment {
                         G0111MODULE='on'
