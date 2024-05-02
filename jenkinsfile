@@ -2,7 +2,7 @@ pipeline {
     agent any  // Use an appropriate agent if necessary (e.g., label or agent pool)
 
     tools {
-        go 'go-1.17'  // Adjust Go version if needed
+        go   // Adjust Go version if needed
     }
 
     environment {
