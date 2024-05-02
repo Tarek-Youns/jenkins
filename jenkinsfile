@@ -10,14 +10,14 @@ pipeline {
 
                                     steps {
                                             git 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git' 
-                                            sh 'go test./...'
+                                            sh 'go test ./...'
                                              }
                      }   
 
                     stage('Build and Run') {
                                     steps {
                                             git 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git'
-                                            sh 'go build.'
+                                            sh 'go build .'
                                            }
                     }
                     stage('Run') {
