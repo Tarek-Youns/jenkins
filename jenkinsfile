@@ -1,6 +1,6 @@
 pipeline {
-            agent{
-                docker { image 'golang:latest' }
+            agent {
+                docker { image 'golang:latest'}
             }
             
 
@@ -9,14 +9,14 @@ pipeline {
                     stage('Test') {
 
                                     steps {
-                                            git 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git' 
-                                            sh 'go test ./...'
+                                            git clone 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git' 
+                                            sh 'cd go-webapp-sample; go test .' 
                                              }
                      }   
 
                     stage('Build and Run') {
                                     steps {
-                                            git 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git'
+                                            git clone 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git'
                                             sh 'go build .'
                                            }
                     }
