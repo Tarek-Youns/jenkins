@@ -9,14 +9,14 @@ pipeline {
                     stage('Test') {
 
                                     steps {
-                                            git clone 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git' 
+                                            git  'https://github.com/AdminTurnedDevOps/go-webapp-sample.git' 
                                             sh 'cd go-webapp-sample; go test .' 
                                              }
                      }   
 
                     stage('Build and Run') {
                                     steps {
-                                            git clone 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git'
+                                            git  'https://github.com/AdminTurnedDevOps/go-webapp-sample.git'
                                             sh 'go build .'
                                            }
                     }
