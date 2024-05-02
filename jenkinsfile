@@ -1,33 +1,40 @@
 pipeline {
-            agent {
-                docker { image 'golang:latest'}
+    agent any  // Use an appropriate agent if necessary (e.g., label or agent pool)
+
+    tools {
+        go 'go-1.17'  // Adjust Go version if needed
+    }
+
+    environment {
+        GO111MODULE='on'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/AdminTurnedDevOps/go-webapp-sample.git'  // Clone the repository
             }
-            
+        }
 
-            stages {
-
-                    stage('Test') {
-
-                                    steps {
-                                            git  'https://github.com/AdminTurnedDevOps/go-webapp-sample.git' 
-                                            sh 'cd go-webapp-sample; go test .' 
-                                             }
-                     }   
-
-                    stage('Build and Run') {
-                                    steps {
-                                            git  'https://github.com/AdminTurnedDevOps/go-webapp-sample.git'
-                                            sh 'go build .'
-                                           }
-                    }
-                    stage('Run') {
-                                    steps {
-                                           sh 'cd /var/lib/jenkins/workspace/go-full-pipeline && go-webapp-sample &'
-                                         }      
+        stage('Test') {
+            steps {
+                sh 'go test ./...'  // Run tests using go test
             }
-            
- 
-                    }                             
+        }
+
+        stage('Build') {
+            steps {
+                sh 'go build -o go-webapp-sample .'  // Build the application with a specific output name
+            }
+        }
+
+        stage('Run (Optional)') { // Optional stage to run the application
+            steps {
+                script {
+                    // Handle potential errors during execution
+                    sh 'cd workspace && ./go-webapp-sample &'
+                }
+            }
+        }
+    }
 }
-
-
